@@ -10,6 +10,7 @@
   text-align: center;
   margin: 0px;
   text-transform: capitalize;
+  margin-top: 5px;
 }
 .city a {
   color: rgb(255, 255, 255);
@@ -33,4 +34,7 @@
 .city .price {
   bottom: 0px;
   font-weight: normal;
+}
+.cities {
+  margin-top: 20px;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import City from "./City";
 import SlickSlider from "../Slider/Slider";
-
+import "./City.css";
 function Cities(props) {
   const cities = props.cities.map((city, i) => {
     return (
@@ -11,10 +11,10 @@ function Cities(props) {
     );
   });
   return (
-    <>
-      <h1 className="main-header-text">{props.header}</h1>
+    <div className="cities">
+      <h1 className="main-header-text ">{props.header}</h1>
       <SlickSlider elements={cities} />
-    </>
+    </div>
   );
 }
 
