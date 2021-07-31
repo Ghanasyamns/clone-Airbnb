@@ -1,34 +1,25 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./Login.css";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useDispatch } from "react-redux";
 import openModal from "../../actions/openModal";
 import SignUp from "./SignUp";
 import axios from "axios";
 import swal from "sweetalert";
 import regAction from "../../actions/regAction";
-class Login extends Component {
-  state = {
-    email: "",
-    password: "",
-  };
-  changeEmail = (e) => {
-    this.setState({
-      email: e.target.value,
-    });
-  };
-  changePassword = (e) => {
-    this.setState({
-      password: e.target.value,
-    });
-  };
-  submitLogin = async (e) => {
+function Login(props) {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  //can access to the store directly
+  // const store = useStore();
+  // console.log(store.getState());
+  const submitLogin = async (e) => {
     e.preventDefault();
     ///get axios request
     const url = `${window.apiHost}/users/login`;
     const data = {
-      email: this.state.email,
-      password: this.state.password,
+      email: email,
+      password: password,
     };
     const resp = await axios.post(url, data);
     // badPass = valid username, but wrong passwrod
@@ -51,64 +42,50 @@ class Login extends Component {
 
         icon: "success",
       });
-      this.props.regAction(resp.data);
+      //we call our register action to update our auth reducer
+      dispatch(regAction(resp.data));
     }
   };
-  render() {
-    console.log(this.props.auth);
-    return (
-      <div className="login-form">
-        <form onSubmit={this.submitLogin}>
-          <button className="facebook-login">Connect With Facebook</button>
-          <button className="google-login">Connect With Google</button>
-          <div className="login-or center">
-            <span>or</span>
-            <div className="or-divider"></div>
-          </div>
-          <input
-            type="text"
-            className="browser-default"
-            placeholder="Email address"
-            onChange={this.changeEmail}
-          />
-          <input
-            type="password"
-            className="browser-default"
-            placeholder="Password"
-            onChange={this.changePassword}
-          />
-          <button type="submit" className="sign-up-button">
-            Login
-          </button>
-          <div className="divider"></div>
-          <div>
-            Don't have an account?
-            <span
-              className="hand_Symbol"
-              onClick={() => {
-                this.props.openModal("open", <SignUp />);
-              }}
-            >
-              Sign up
-            </span>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
-function mapStateToProps(state) {
-  return {
-    auth: state.auth,
-  };
-}
-function mapDispatchToProps(dispatcher) {
-  return bindActionCreators(
-    {
-      openModal: openModal,
-      regAction: regAction,
-    },
-    dispatcher
+  return (
+    <div className="login-form">
+      <form onSubmit={submitLogin}>
+        <button className="facebook-login">Connect With Facebook</button>
+        <button className="google-login">Connect With Google</button>
+        <div className="login-or center">
+          <span>or</span>
+          <div className="or-divider"></div>
+        </div>
+        <input
+          type="text"
+          className="browser-default"
+          placeholder="Email address"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          className="browser-default"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" className="sign-up-button">
+          Login
+        </button>
+        <div className="divider"></div>
+        <div>
+          Don't have an account?
+          <span
+            className="hand_Symbol"
+            onClick={() => {
+              dispatch(openModal("open", <SignUp />));
+            }}
+          >
+            Sign up
+          </span>
+        </div>
+      </form>
+    </div>
   );
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;
