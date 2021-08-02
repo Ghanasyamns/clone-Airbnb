@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/pages/Activity/SingleActivity.css"],"names":[],"mappings":"AAGA,MACE,kBACF","file":"14.e28cffa0.chunk.css","sourcesContent":["/* .act-details {\r\n  padding-left: 20px; */\r\n/* } */\r\n.desc {\r\n  padding-right: 60px;\r\n}\r\n/* .desc {\r\n  width: 50%;\r\n} */\r\n"]}
