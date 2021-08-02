@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { Component, lazy, Suspense } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import Spinner from "./utility/Spinner/Spinner";
 const NavBar = lazy(() => import("./utility/NavBar/NavBar"));
 const Home = lazy(() => import("./pages/Home/Home"));
