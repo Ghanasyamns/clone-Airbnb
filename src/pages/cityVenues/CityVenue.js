@@ -18,7 +18,6 @@ class CityVenue extends Component {
     });
   }
   render() {
-    console.log(this.state);
     if (!this.state.header) {
       return <Spinner />;
     }

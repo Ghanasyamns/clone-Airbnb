@@ -48,7 +48,7 @@ class SingleFullVenue extends Component {
 
     const endDay = moment(this.state.checkout);
     const diffDays = endDay.diff(startDay, "days");
-    console.log(diffDays);
+
     if (diffDays < 1) {
       swal({
         title: "Check out date must be after Check in date",
@@ -74,7 +74,6 @@ class SingleFullVenue extends Component {
       //   console.log("the scipt has been added to the head");
       // });
       await loadScript(scriptUrl);
-      console.log("let run stripe");
 
       const stripe = window.Stripe(stripePublicKey);
       const stripeSessionUrl = `${window.apiHost}/payment/create-session`;

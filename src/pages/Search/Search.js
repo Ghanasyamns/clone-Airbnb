@@ -15,10 +15,9 @@ function Search(props) {
   useEffect(() => {
     const fetchData = async () => {
       const SearchItem = props.match.params.searchTerm;
-      console.log(SearchItem);
+
       const searchUrl = `${window.apiHost}/search/${SearchItem}`;
       const searchResp = await axios.get(searchUrl);
-      console.log(searchResp.data);
 
       setActivities(searchResp.data.activities);
       setCities(searchResp.data.cities);

@@ -36,7 +36,7 @@ class PaymentSuccess extends Component {
   render() {
     const rd = this.state.reservationDetails;
     const vd = rd.venueData;
-    console.log(rd, vd);
+
     if (this.state.waititng) {
       return <Spinner />;
     }
